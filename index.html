@@ -14,7 +14,7 @@
             height: 100%;
             width: 100%;
             overflow: hidden; /* Prevents scrollbars in the small dashboard tile */
-            background-color: transparent; /* Allows blending if iframe is transparent, otherwise white */
+            background-color: #d32f2f; /* Deep Red Background */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
@@ -32,9 +32,9 @@
            You can change 'color' or 'font-size' here.
         */
         .warning-text {
-            font-size: 20px;
-            font-weight: 400; /* Normal weight (thinner than 800) */
-            color: #c9302c;   /* Changed to a darker, more professional red */
+            font-size: 15px;  /* Reduced from 20px */
+            font-weight: 700; /* Bold */
+            color: #ffffff;   /* White text to contrast with red bg */
             text-transform: uppercase;
             letter-spacing: 1px;
             
@@ -42,16 +42,23 @@
             animation: blink-animation 1.5s infinite ease-in-out;
         }
 
+        /* Specific styling for the alert icon to make it larger */
+        .alert-icon {
+            font-size: 1.5em; /* 1.5x larger than the new normal text size */
+            vertical-align: text-bottom; /* Aligns nicer with the text */
+            margin-right: 5px;
+        }
+
         /* Styling for the link within the warning text */
         .warning-text a {
-            color: #337ab7; /* Changed to a brighter blue to pop against the red */
+            color: #ffd700; /* Gold/Yellow color to stand out on red */
             text-decoration: underline;
             cursor: pointer;
         }
         
         /* Make link slightly distinct on hover */
         .warning-text a:hover {
-            color: #23527c; /* Darker blue on hover */
+            color: #fff; /* White on hover */
             text-decoration-thickness: 2px;
         }
 
@@ -61,13 +68,13 @@
         */
         @keyframes blink-animation {
             0% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.3; transform: scale(0.98); }
+            50% { opacity: 0.6; transform: scale(0.98); } /* Higher opacity floor for white text */
             100% { opacity: 1; transform: scale(1); }
         }
 
         /* Optional: A solid background badge style */
         .badge-style {
-            background-color: #d9534f;
+            background-color: #b71c1c; /* Darker red badge */
             color: white;
             padding: 5px 15px;
             border-radius: 4px;
@@ -75,9 +82,9 @@
         }
 
         @keyframes badge-pulse {
-            0% { background-color: #d9534f; }
-            50% { background-color: #ff8b8b; }
-            100% { background-color: #d9534f; }
+            0% { background-color: #b71c1c; }
+            50% { background-color: #d32f2f; }
+            100% { background-color: #b71c1c; }
         }
 
     </style>
@@ -87,7 +94,7 @@
     <div class="container">
         <!-- Default text is inside this span -->
         <span id="message" class="warning-text" style="display: inline-block; max-width: 90%; line-height: 1.4;">
-            ⚠ Alert: Starting Jan 1 2026, the dashboards on Tableau Server won't be available to access due to Telus-wide transition from Tableau Server to Tableau Cloud. Please save and bookmark the new <a href="https://www.youtube.com" target="_blank">Tableau Cloud Landing Page</a>. Going forward all the changes/updates and new development will be done here.
+            <span class="alert-icon">⚠</span> Alert: Starting Jan 1 2026, the dashboards on Tableau Server won't be available to access due to Telus-wide transition from Tableau Server to Tableau Cloud. Please save and bookmark the new <a href="https://www.youtube.com" target="_blank">Tableau Cloud Landing Page</a>. Going forward all the changes/updates and new development will be done here.
         </span>
     </div>
 
