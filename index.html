@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Notification</title>
+    <style>
+        /* Reset margins to ensure the text fits perfectly 
+           inside the Tableau tile 
+        */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden; /* Prevents scrollbars in the small dashboard tile */
+            background-color: transparent; /* Allows blending if iframe is transparent, otherwise white */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Flexbox to center the text perfectly horizontally and vertically */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* The styling for the warning text.
+           You can change 'color' or 'font-size' here.
+        */
+        .warning-text {
+            font-size: 20px;
+            font-weight: 400; /* Normal weight (thinner than 800) */
+            color: #c9302c;   /* Changed to a darker, more professional red */
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            
+            /* The Animation definitions */
+            animation: blink-animation 1.5s infinite ease-in-out;
+        }
+
+        /* Styling for the link within the warning text */
+        .warning-text a {
+            color: #337ab7; /* Changed to a brighter blue to pop against the red */
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        
+        /* Make link slightly distinct on hover */
+        .warning-text a:hover {
+            color: #23527c; /* Darker blue on hover */
+            text-decoration-thickness: 2px;
+        }
+
+        /* The Animation Logic 
+           This creates a smooth pulse instead of a harsh on/off blink
+           which is easier on the eyes but still grabs attention.
+        */
+        @keyframes blink-animation {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(0.98); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Optional: A solid background badge style */
+        .badge-style {
+            background-color: #d9534f;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 4px;
+            animation: badge-pulse 1.5s infinite;
+        }
+
+        @keyframes badge-pulse {
+            0% { background-color: #d9534f; }
+            50% { background-color: #ff8b8b; }
+            100% { background-color: #d9534f; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Default text is inside this span -->
+        <span id="message" class="warning-text" style="display: inline-block; max-width: 90%; line-height: 1.4;">
+            ⚠ Alert: Starting Jan 1 2026, the dashboards on Tableau Server won't be available to access due to Telus-wide transition from Tableau Server to Tableau Cloud. Please save and bookmark the new <a href="https://www.youtube.com" target="_blank">Tableau Cloud Landing Page</a>. Going forward all the changes/updates and new development will be done here.
+        </span>
+    </div>
+
+    <script>
+        // This script looks for a URL parameter called "text"
+        // Example URL: warning.html?text=Filter Selection Required
+        
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        const customText = getQueryParam('text');
+        const messageElement = document.getElementById('message');
+
+        if (customText) {
+            // changed to innerHTML to allow links in URL params if needed
+            messageElement.innerHTML = customText; 
+        }
+
+        // To switch to the solid badge style described in CSS, 
+        // you can change the classList below to 'badge-style'
+        // messageElement.classList.add('badge-style');
+    </script>
+
+</body>
+</html>
